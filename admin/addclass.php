@@ -25,7 +25,6 @@
                 <!-- ORDERS TABLE -->
                 <div class="box">
                     <form action="addclass.php" method="POST" class="box-body" enctype="multipart/form-data">
-                        <input type="hidden" name="token" value="<?php echo $token; ?>" />
                         <?php 
                             if(isset($insert_class))
                             {
@@ -54,7 +53,7 @@
                                 <option value="<?php echo $result['coursesId'] ?>"><?php echo $result['coursesName'] ?>
                                 </option>
                                 <?php 
-                                        }   
+                                    }   
                                         }
                                 ?>
                             </select>
@@ -65,7 +64,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Hình ảnh giáo viên</label>
-                            <input type="file" name="classTeacherAvatar">
+                            <input type="file" name="classTeacherAvatar" accept=".jpg, .jpeg, .png .gif">
                         </div>
                         <div class="form-group">
                             <label for="">Tên giáo viên hỗ trợ </label>
@@ -73,7 +72,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Hình ảnh giáo viên hỗ trợ</label>
-                            <input type="file" name="classMentorAvatar">
+                            <input type="file" name="classMentorAvatar" accept=".jpg, .jpeg, .png .gif">
                         </div>
                         <div class="form-group">
                             <label for="">Giá tiền</label>

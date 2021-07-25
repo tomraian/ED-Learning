@@ -1,13 +1,18 @@
 <?php 
-    $title = "Thêm lớp học";
+    $title = "Sửa thông tin lớp học";
     include './inc/sidebar.php';
     include '../classes/courses.php';
     include '../classes/class.php';
 ?>
 <?php 
     $class = new classOfCourse();
-   if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
-        $insert_class = $class->insert_class($_POST,$_FILES);
+    if(!isset($_GET['classId']) || $_GET['classId'] == NULL) {
+        echo "<script>window.location = 'listclass.php'</script>";
+    } else {
+        $Id = $_GET['classId'];
+    }
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update'])) {
+        $update_class = $class->update_class($_POST,$_FILES,$Id);
    }
 ?>
 <div class="main">
@@ -16,29 +21,38 @@
             <i class='bx bx-menu-alt-right'></i>
         </div>
         <div class="main-title">
-            <?php echo $title ;?>
+            <?php echo $title ;
+            ?>
         </div>
     </div>
     <div class="main-content">
         <div class="row">
             <div class="col-12">
                 <!-- ORDERS TABLE -->
+
                 <div class="box">
-                    <form action="addclass.php" method="POST" class="box-body" enctype="multipart/form-data">
+                    <?php 
+                     $getClassById = $class->getClassById($Id);
+                         if($getClassById){
+                             while($result_class = $getClassById->fetch_assoc()){
+                    ?>
+                    <form action="" method="POST" class="box-body" enctype="multipart/form-data">
                         <input type="hidden" name="token" value="<?php echo $token; ?>" />
                         <?php 
-                            if(isset($insert_class))
+                            if(isset($update_class))
                             {
-                                echo $insert_class;
+                                echo $update_class;
                             }
                         ?>
                         <div class="form-group">
                             <label for="">Tên lớp học</label>
-                            <input type="text" name="className" placeholder="Nhập tên khóa học">
+                            <input type="text" name="className" placeholder="Nhập tên khóa học"
+                                value="<?php echo $result_class['className'] ?>">
                         </div>
                         <div class="form-group">
                             <label for="">Giới thiệu lớp học</label>
-                            <input type="text" name="classDesc" placeholder="Nhập thông tin giới thiệu lớp học">
+                            <input type="text" name="classDesc" placeholder="Nhập thông tin giới thiệu lớp học"
+                                value="<?php echo $result_class['classDesc']; ?>">
                         </div>
                         <div class="form-group">
                             <label for="">-----Chọn khóa học-----</label>
@@ -51,42 +65,56 @@
                                         while($result = $courseslist->fetch_assoc())
                                         {
                                     ?>
-                                <option value="<?php echo $result['coursesId'] ?>"><?php echo $result['coursesName'] ?>
+                                <option <?php 
+                                    if($result['coursesId'] == $result_class['coursesId'])
+                                    {
+                                        echo 'selected';
+                                    }
+                                ?> value="<?php echo $result['coursesId'] ?>"><?php echo $result['coursesName'] ?>
                                 </option>
                                 <?php 
-                                        }   
-                                        }
+                                        }  
+                                    }
                                 ?>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="">Tên giáo viên</label>
-                            <input type="text" name="classTeacher" placeholder="Nhập tên giáo viên giảng dạy">
+                            <input type="text" name="classTeacher" placeholder="Nhập tên giáo viên giảng dạy"
+                                value="<?php echo $result_class['classTeacher']; ?>">
                         </div>
                         <div class="form-group">
                             <label for="">Hình ảnh giáo viên</label>
-                            <input type="file" name="classTeacherAvatar">
+                            <img src="../uploads/<?php echo $result_class['classTeacherAvatar']?>" alt="" width="100px">
+                            <input type="file" name="classTeacherAvatar" accept=".jpg, .jpeg, .png .gif">
                         </div>
                         <div class="form-group">
                             <label for="">Tên giáo viên hỗ trợ </label>
-                            <input type="text" name="classMentor" placeholder="Nhập tên giáo viên hỗ trợ giảng dạy">
+                            <input type="text" name="classMentor" placeholder="Nhập tên giáo viên hỗ trợ giảng dạy"
+                                value="<?php echo $result_class['classMentor']; ?>">
                         </div>
                         <div class="form-group">
                             <label for="">Hình ảnh giáo viên hỗ trợ</label>
-                            <input type="file" name="classMentorAvatar">
+                            <img src="../uploads/<?php echo $result_class['classMentorAvatar']?>" alt="" width="100px">
+                            <input type="file" name="classMentorAvatar" accept=".jpg, .jpeg, .png .gif">
                         </div>
                         <div class="form-group">
                             <label for="">Giá tiền</label>
-                            <input type="number" min="0" name="classPrice" placeholder="Nhập giá tiền cho lớp học">
+                            <input type="number" min="0" name="classPrice" placeholder="Nhập giá tiền cho lớp học"
+                                value="<?php echo $result_class['classPrice']; ?>">
                         </div>
                         <!-- <div class="form-group">
-                            <label for="">Hình ảnh khóa học</label>
-                            <input type="file" name="image">
-                        </div> -->
+                                    <label for="">Hình ảnh khóa học</label>
+                                    <input type="file" name="image">
+                                </div> -->
                         <div class="form-group">
-                            <input type="submit" name="add" value="Thêm">
+                            <input type="submit" name="update" value="Sửa">
                         </div>
                     </form>
+                    <?php 
+                          }
+                        }
+                    ?>
                 </div>
                 <!-- END ORDERS TABLE -->
             </div>

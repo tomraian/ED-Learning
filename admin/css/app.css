@@ -282,7 +282,11 @@ a {
 .dark .main-header {
   border-bottom: 2px solid var(--border-color);
 }
-
+.dark .main-content form input,
+.dark .main-content form textarea {
+  background-color: #333;
+  color: #fff;
+}
 .mobile-toggle {
   display: none;
 }
@@ -554,9 +558,12 @@ table td {
   cursor: pointer;
 }
 .form-group img {
-  width: 100%;
-  overflow: hidden;
-  height: 150px;
+  width: 130px;
+  display: block;
+  margin: 10px 0;
+  height: auto;
+  /* height: 150px; */
+
   object-fit: cover;
 }
 .teacher-box {
@@ -566,9 +573,10 @@ table td {
   justify-content: center;
 }
 .teacher-box img {
-  width: 30%;
-  border-radius: 50rem;
-  object-fit: contain;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
   object-position: center;
 }
 .teacher-box span {

@@ -11,7 +11,7 @@
     if(isset($_GET['delid']))
     {
         $Id = $_GET['delid'];
-        $del_class = $class->del_course($Id);
+        $del_class = $class->del_class($Id);
    }
 ?>
 
@@ -32,9 +32,9 @@
                 <!-- ORDERS TABLE -->
                 <div class="box">
                     <?php 
-                            if(isset($del_courses))
+                            if(isset($del_class))
                             {
-                                echo $del_courses;
+                                echo $del_class;
                             }
                         ?>
                     <div class="box-body overflow-scroll">
@@ -45,6 +45,7 @@
                                     <th>Tên lớp học</th>
                                     <th>Tên khóa học</th>
                                     <th>Mô tả lớp học</th>
+                                    <th>Giá tiền</th>
                                     <th>Giáo viên</th>
                                     <th>Giáo viên hỗ trợ</th>
                                     <th>Hành động</th>
@@ -76,6 +77,9 @@
                                         <?php echo $fm->textShorten($result['classDesc'], 100); ?>
                                     </td>
                                     <td>
+                                        <?php  echo number_format($result['classPrice'], 0, '', ',').' VNĐ'; ?>
+                                    </td>
+                                    <td>
                                         <div class="teacher-box">
                                             <img src="../uploads/<?php echo $result['classTeacherAvatar']?>" alt="">
                                             <span><?php echo $result['classTeacher']?></span>
@@ -89,9 +93,9 @@
                                     </td>
                                     <td>
                                         <div class="action-box">
-                                            <a href="editcourse.php?classId=<?php echo $result['classId']?>"
+                                            <a href="editclass.php?classId=<?php echo $result['classId']?>"
                                                 class="action-box__edit">Sửa</a>
-                                            <a href="listcourse.php?delid=<?php echo $result['classId']?>"
+                                            <a href="listclass.php?delid=<?php echo $result['classId']?>"
                                                 class="action-box__remove">Xóa</a>
                                         </div>
                                     </td>
