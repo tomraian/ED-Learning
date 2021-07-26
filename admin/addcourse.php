@@ -27,7 +27,7 @@
             <div class="col-12">
                 <!-- ORDERS TABLE -->
                 <div class="box">
-                    <form action="addcourse.php" method="POST" class="box-body ">
+                    <form action="addcourse.php" method="POST" class="box-body" enctype="multipart/form-data">
                         <input type="hidden" name="token" value="<?php echo $token; ?>" />
                         <?php 
                             if(isset($insert_courses))
@@ -43,10 +43,10 @@
                             <label for="">Giới thiệu khóa học</label>
                             <input type="text" name="courseDesc" placeholder="Nhập thông tin giới thiệu khóa học">
                         </div>
-                        <!-- <div class="form-group">
+                        <div class="form-group">
                             <label for="">Hình ảnh khóa học</label>
-                            <input type="file" name="image">
-                        </div> -->
+                            <input type="file" name="courseImage">
+                        </div>
                         <div class="form-group">
                             <label for="check">
                                 <span>Duyệt</span>

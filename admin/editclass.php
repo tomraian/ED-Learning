@@ -37,7 +37,6 @@
                              while($result_class = $getClassById->fetch_assoc()){
                     ?>
                     <form action="" method="POST" class="box-body" enctype="multipart/form-data">
-                        <input type="hidden" name="token" value="<?php echo $token; ?>" />
                         <?php 
                             if(isset($update_class))
                             {
@@ -56,7 +55,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">-----Chọn khóa học-----</label>
-                            <select name="classCourse" id="class-select">
+                            <select name="classCourse" class="class-select">
                                 <?php 
                                     $courses = new courses();
                                     $courseslist = $courses->show_courses();
@@ -77,6 +76,11 @@
                                     }
                                 ?>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">-----Chọn thời gian khai giảng lớp học-----</label>
+                            <input type="date" name="classTime" id="" value="<?php echo $result_class['classTime']?>">
+
                         </div>
                         <div class="form-group">
                             <label for="">Tên giáo viên</label>
@@ -102,6 +106,31 @@
                             <label for="">Giá tiền</label>
                             <input type="number" min="0" name="classPrice" placeholder="Nhập giá tiền cho lớp học"
                                 value="<?php echo $result_class['classPrice']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Tình trang lớp học</label>
+                            <select name="classStatus" id="" class="class-select">
+                                <?php 
+                                if($result_class['classStatus'] == 0){
+                                ?>
+                                <option value="0" selected>Đang diễn ra</option>
+                                <option value="1">Sắp khai giảng</option>
+                                <option value="2">Đã kết thúc</option>
+                                <?php  }
+                                else if($result_class['classStatus'] == 1){
+                                ?>
+                                <option value="0">Đang diễn ra</option>
+                                <option value="1" selected>Sắp khai giảng</option>
+                                <option value="2">Đã kết thúc</option>
+                                <?php
+                                }
+                                else if($result_class['classStatus'] == 2){
+                                    ?>
+                                <option value="0">Đang diễn ra</option>
+                                <option value="1">Sắp khai giảng</option>
+                                <option value="2" selected>Đã kết thúc</option>
+                                <?php }?>
+                            </select>
                         </div>
                         <!-- <div class="form-group">
                                     <label for="">Hình ảnh khóa học</label>

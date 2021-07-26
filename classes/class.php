@@ -1,6 +1,7 @@
 <?php
-    include_once '../lib/database.php';
-    include_once '../helpers/format.php';
+    $filepath = realpath(dirname(__FILE__));
+    include_once ($filepath.'/../lib/database.php');
+    include_once ($filepath.'/../helpers/format.php');
 ?>
 <?php
  class classOfCourse 
@@ -17,6 +18,7 @@
         $className = mysqli_real_escape_string($this->db->link, $data['className']);
          $classDesc = mysqli_real_escape_string($this->db->link, $data['classDesc']);
         //  $classCourse = mysqli_real_escape_string($this->db->link, $data['classCourse']);
+         $classTime = mysqli_real_escape_string($this->db->link, $data['classTime']);
          $classTeacher = mysqli_real_escape_string($this->db->link, $data['classTeacher']);
          $classMentor = mysqli_real_escape_string($this->db->link, $data['classMentor']);
          $classPrice = mysqli_real_escape_string($this->db->link, $data['classPrice']);
@@ -53,6 +55,10 @@
             $alert = '<span class="warning-message">Phải chọn khóa học</span>';
             return $alert;
         }
+        else if(empty($classTime)) {
+            $alert = '<span class="warning-message">Thời gian khai giảng khóa học không được để trống</span>';
+            return $alert;
+        }
         else if(empty($classTeacher)) {
             $alert = '<span class="warning-message">Tên giáo viên không được để trống</span>';
             return $alert;
@@ -85,7 +91,7 @@
         else{
             move_uploaded_file($file_tempTeacher,$uploaded_imageTeacher);
             move_uploaded_file($file_tempMentor,$uploaded_imageMentor);
-            $query = "INSERT INTO tbl_class (className,coursesId,classDesc,classPrice,classTeacher,classMentor,classTeacherAvatar,classMentorAvatar) VALUES ('$className','$coursesId','$classDesc','$classPrice','$classTeacher','$classMentor','$unique_imageTeacher','$unique_imageMentor')";
+            $query = "INSERT INTO tbl_class (className,coursesId,classDesc,classTime,classPrice,classTeacher,classMentor,classTeacherAvatar,classMentorAvatar,classStatus) VALUES ('$className','$coursesId','$classDesc','$classTime','$classPrice','$classTeacher','$classMentor','$unique_imageTeacher','$unique_imageMentor', 1)";
             $result  = $this->db->insert($query);
             if($result){
                 $alert = '<span class="success-message">Thêm lớp học thành công</span>';
@@ -97,11 +103,16 @@
             }
         }
     }
-    public function show_class(){
+    public function show_class_asc(){
         $query =
         "SELECT tbl_class.*,tbl_courses.coursesName 
         FROM tbl_class INNER JOIN tbl_courses ON tbl_class.coursesId = tbl_courses.coursesId 
-        ORDER BY tbl_class.classId DESC" ;
+        ORDER BY tbl_class.classStatus ASC" ;
+        $result = $this->db->select($query);
+        return $result; 
+    }
+    public function show_class_desc(){
+        $query = "SELECT * FROM tbl_class  WHERE classStatus = 0 OR classStatus = 1 ORDER BY classStatus DESC LIMIT 8";
         $result = $this->db->select($query);
         return $result; 
     }
@@ -118,6 +129,8 @@
         $classMentor = mysqli_real_escape_string($this->db->link, $data['classMentor']);
         $classPrice = mysqli_real_escape_string($this->db->link, $data['classPrice']);
         $coursesId = mysqli_real_escape_string($this->db->link, $data['classCourse']);
+        $classStatus = mysqli_real_escape_string($this->db->link, $data['classStatus']);
+        $classTime = mysqli_real_escape_string($this->db->link, $data['classTime']);
         //  ===================================================
         $permitted = array('jpg', 'jpeg', 'png' , 'gif');
         $file_nameTeacher = $_FILES['classTeacherAvatar'] ['name'];
@@ -166,7 +179,7 @@
             return $alert;
         }
         else{
-            // Nếu upload ảnh của cả 2
+            // Nếu upload ảnh của cả 2 
             if(!empty($file_nameTeacher) && !empty($file_nameMentor))
             {
                 if(in_array($file_extTeacher, $permitted) === false || in_array($file_extMentor, $permitted) === false )
@@ -183,11 +196,13 @@
                     className = '$className',
                     coursesId = '$coursesId',
                     classDesc = '$classDesc',
+                    classTime = '$classTime',
                     classPrice = '$classPrice',
                     classTeacher = '$classTeacher',
                     classMentor = '$classMentor',
                     classTeacherAvatar = '$unique_imageTeacher',
-                    classMentorAvatar = '$unique_imageMentor'
+                    classMentorAvatar = '$unique_imageMentor',
+                    classStatus = $classStatus
                     WHERE classId = '$Id'";
                 }
             }
@@ -207,10 +222,12 @@
                     className = '$className',
                     coursesId = '$coursesId',
                     classDesc = '$classDesc',
+                    classTime = '$classTime',
                     classPrice = '$classPrice',
                     classTeacher = '$classTeacher',
                     classMentor = '$classMentor',
-                    classTeacherAvatar = '$unique_imageTeacher'
+                    classTeacherAvatar = '$unique_imageTeacher',
+                    classStatus = $classStatus
                     WHERE classId = '$Id'";
                 }
             }
@@ -230,14 +247,15 @@
                     className = '$className',
                     coursesId = '$coursesId',
                     classDesc = '$classDesc',
+                    classTime = '$classTime',
                     classPrice = '$classPrice',
                     classTeacher = '$classTeacher',
                     classMentor = '$classMentor',
-                    classMentorAvatar = '$unique_imageMentor'
+                    classMentorAvatar = '$unique_imageMentor',
+                    classStatus = $classStatus
                     WHERE classId = '$Id'";
                 }
-            }
-            
+            }  
             // nếu không upload ảnh 
             else{
                 $query = 
@@ -245,9 +263,11 @@
                     className = '$className',
                     coursesId = '$coursesId',
                     classDesc = '$classDesc',
+                    classTime = '$classTime',
                     classPrice = '$classPrice',
                     classTeacher = '$classTeacher',
-                    classMentor = '$classMentor'
+                    classMentor = '$classMentor',
+                    classStatus = $classStatus
                 WHERE classId = '$Id'";
             }
             $result  = $this->db->update($query);

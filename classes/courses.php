@@ -1,6 +1,7 @@
 <?php
-    include_once '../lib/database.php';
-    include_once '../helpers/format.php';
+    $filepath = realpath(dirname(__FILE__));
+    include_once ($filepath.'/../lib/database.php');
+    include_once ($filepath.'/../helpers/format.php');
 ?>
 <?php
  class courses
@@ -20,6 +21,17 @@
 
          $courseName = mysqli_real_escape_string($this->db->link, $courseName);
          $courseDesc = mysqli_real_escape_string($this->db->link, $courseDesc);
+
+         $permitted = array('jpg', 'jpeg', 'png' , 'gif');
+        
+         $file_name = $_FILES['courseImage'] ['name'];
+         $file_size = $_FILES['courseImage'] ['size'];
+         $file_temp = $_FILES['courseImage'] ['tmp_name'];
+         
+         $div = explode('.', $file_name);
+         $file_ext = strtolower(end($div));
+         $unique_image = substr(md5(time()), 0 , 10).$this->fm->generateRandomString(10).'.'.$file_ext;
+         $uploaded_image = "../uploads/".$unique_image;
         //  $courseImage = mysqli_real_escape_string($this->db->link, $courseImage);
         //  kiểm tra lỗi 
          if(empty($courseName)) {
@@ -38,12 +50,18 @@
             $alert = '<span class="warning-message">Thông tin giới thiệu phải lớn hơn 10 ký tự</span>';
             return $alert;
          }
+         else if(in_array($file_ext, $permitted) === false)
+        {
+            $alert = '<span class="warning-message">Ảnh chỉ được có định dạng file là '.implode(',',$permitted)."</span>";
+            return $alert;
+        }
         //  else if(empty($courseImage)){
         //     $alert = "Thông tin giới thiệu khóa học không được để trống";
         //     return $alert;
         //  }
          else{
-             $query = "INSERT INTO tbl_courses (coursesName, coursesDesc,coursesImage) VALUES ('$courseName', '$courseDesc', NULL)";
+            move_uploaded_file($file_temp,$uploaded_image);
+             $query = "INSERT INTO tbl_courses (coursesName, coursesDesc,coursesImage) VALUES ('$courseName', '$courseDesc', '$unique_image')";
              $result  = $this->db->insert($query);
              if($result){
                  $alert = '<span class="success-message">Thêm khóa học thành công</span>';

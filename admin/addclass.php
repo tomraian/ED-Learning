@@ -41,7 +41,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">-----Chọn khóa học-----</label>
-                            <select name="classCourse" id="class-select">
+                            <select name="classCourse" class="class-select">
                                 <?php 
                                     $courses = new courses();
                                     $courseslist = $courses->show_courses();
@@ -57,6 +57,10 @@
                                         }
                                 ?>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">-----Chọn thời gian khai giảng lớp học-----</label>
+                            <input type="date" name="classTime" id="">
                         </div>
                         <div class="form-group">
                             <label for="">Tên giáo viên</label>

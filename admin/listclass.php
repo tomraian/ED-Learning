@@ -44,16 +44,17 @@
                                     <th>STT</th>
                                     <th>Tên lớp học</th>
                                     <th>Tên khóa học</th>
-                                    <th>Mô tả lớp học</th>
                                     <th>Giá tiền</th>
                                     <th>Giáo viên</th>
                                     <th>Giáo viên hỗ trợ</th>
+                                    <th>Tình trạng</th>
+                                    <th>Thời gian</th>
                                     <th>Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php 
-                                    $show_class = $class->show_class();
+                                    $show_class = $class->show_class_asc();
                                     if(isset($show_class))
                                     {
                                         $i = 0;
@@ -74,9 +75,6 @@
                                         <?php echo $result['coursesName']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $fm->textShorten($result['classDesc'], 100); ?>
-                                    </td>
-                                    <td>
                                         <?php  echo number_format($result['classPrice'], 0, '', ',').' VNĐ'; ?>
                                     </td>
                                     <td>
@@ -90,6 +88,30 @@
                                             <img src="../uploads/<?php echo $result['classMentorAvatar']?>" alt="">
                                             <span><?php echo $result['classMentor']?></span>
                                         </div>
+                                    </td>
+                                    <td>
+                                        <?php 
+                                            if($result['classStatus'] == 0)
+                                            {
+                                                echo '<div class="box-status status-happening">
+                                                <div class="dot"></div>
+                                                    <span>Đang diễn ra</span>
+                                                </div>';
+                                            }
+                                            else if($result['classStatus'] == 1)
+                                            echo '<div class="box-status status-upcoming">
+                                            <div class="dot"></div>
+                                                    <span>Sắp khai giảng</span>
+                                                </div>';
+                                            else if($result['classStatus'] == 2)
+                                            echo '<div class="box-status status-happened">
+                                                <div class="dot"></div>
+                                                    <span>Đã kết thúc</span></div>';
+                                        ?>
+
+                                    </td>
+                                    <td>
+                                        <?php  echo $fm->formatDate($result['classTime'])?>
                                     </td>
                                     <td>
                                         <div class="action-box">

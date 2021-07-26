@@ -70,8 +70,8 @@
                                     <td>
                                         <?php echo $fm->textShorten($result['coursesDesc'], 50); ?>
                                     </td>
-                                    <td>
-                                        <?php echo $result['coursesImage']; ?>
+                                    <td class="box-image">
+                                        <img src="../uploads/<?php echo $result['coursesImage']; ?>" alt="">
                                     </td>
                                     <td>
                                         <?php 
