@@ -30,13 +30,14 @@
         <div class="row">
             <div class="col-12">
                 <!-- ORDERS TABLE -->
-                <div class="box">
-                    <?php 
+                <?php 
                             if(isset($del_class))
                             {
                                 echo $del_class;
                             }
                         ?>
+                <div class="box">
+
                     <div class="box-body overflow-scroll">
                         <table>
                             <thead>
@@ -75,7 +76,7 @@
                                         <?php echo $result['coursesName']; ?>
                                     </td>
                                     <td>
-                                        <?php  echo number_format($result['classPrice'], 0, '', ',').' VNĐ'; ?>
+                                        <?php  echo $fm->formatMoney($result['classPrice']) ?>
                                     </td>
                                     <td>
                                         <div class="teacher-box">

@@ -1,8 +1,19 @@
 <?php 
     $title = 'Trang chủ';
     include './inc/sidebar.php';
+    include '../classes/contact.php';
+    include '../classes/register.php';
 ?>
-
+<?php 
+    $contact = new contact();
+    $register = new register();
+    $fm = new Format();
+//     if(isset($_GET['delid']))
+//     {
+//         $Id = $_GET['delid'];
+//         $del_courses = $courses->del_course($Id);
+//    }
+?>
 <!-- MAIN CONTENT -->
 <div class="main">
     <div class="main-header">
@@ -37,11 +48,15 @@
                     <!-- COUNTER -->
                     <div class="counter">
                         <div class="counter-title">
-                            conversion rate
+                            Tổng liên hệ
                         </div>
                         <div class="counter-info">
                             <div class="counter-count">
-                                30.5%
+                                <?php
+                                //  $count_contact = $contact->count_contact(); 
+                                //  var_dump($count_contact);
+                                //  echo $count_contact->current_field;
+                                ?>
                             </div>
                             <i class='bx bx-chat'></i>
                         </div>
@@ -58,7 +73,11 @@
                         </div>
                         <div class="counter-info">
                             <div class="counter-count">
-                                $9,780
+                                <?php
+                                //  $count_register = $register->count_register(); 
+                                //  var_dump($count_register);
+                                //  echo $count_register->current_field;
+                                ?>
                             </div>
                             <i class='bx bx-line-chart'></i>
                         </div>

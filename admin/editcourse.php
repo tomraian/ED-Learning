@@ -4,7 +4,7 @@
     include '../classes/courses.php';
 ?>
 <?php 
-     $courses = new courses();
+    $courses = new courses();
     if(!isset($_GET['coursesId']) || $_GET['coursesId'] == NULL) {
         echo "<script>window.location = 'listcourse.php'</script>";
     } else {
@@ -37,7 +37,7 @@
                                 while($result = $get_courses_name->fetch_assoc())
                                 {
                         ?>
-                    <form action="" method="POST" class="box-body ">
+                    <form action="" method="POST" class="box-body " enctype="multipart/form-data">
                         <?php 
                             if(isset($update_courses))
                             {
@@ -53,6 +53,11 @@
                             <label for="">Giới thiệu khóa học</label>
                             <input type="text" name="courseDesc" value="<?php echo $result['coursesDesc'] ?>"
                                 placeholder="Nhập thông tin giới thiệu khóa học">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Hình ảnh khóa học</label>
+                            <img src="../uploads/<?php echo $result['coursesImage']?>" alt="">
+                            <input type="file" name="courseImage">
                         </div>
                         <!-- <div class="form-group">
                                     <label for="">Hình ảnh khóa học</label>

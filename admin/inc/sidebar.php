@@ -22,7 +22,7 @@ header("Cache-Control: max-age=2592000")
                 echo $title;
             }
             else{
-                echo 'Mặc Định';
+                echo 'ED';
             }
         ?>
     </title>
@@ -76,7 +76,7 @@ header("Cache-Control: max-age=2592000")
         <!-- SIDEBAR MENU -->
         <ul class="sidebar-menu">
             <li>
-                <a href="index.php" class="active">
+                <a href="index.php" class="">
                     <i class='bx bx-home'></i>
                     <span>Trang chủ</span>
                 </a>
@@ -106,8 +106,8 @@ header("Cache-Control: max-age=2592000")
                         </a>
                     </li>
                     <li>
-                        <a href="./settingaccount.php">
-                            Cài đặt tài khoản
+                        <a href="./addadmin.php">
+                            Thêm quản trị viên
                         </a>
                     </li>
                 </ul>
@@ -148,21 +148,64 @@ header("Cache-Control: max-age=2592000")
                             Thêm lớp học
                         </a>
                     </li>
+                    <li>
+                        <a href="./addlesson.php">
+                            Thêm nội dung lớp học
+                        </a>
+                    </li>
                 </ul>
             </li>
-            <!-- <li>
-                <a href="#">
-                    <i class='bx bx-mail-send'></i>
-                    <span>mail</span>
+            <li class="sidebar-submenu">
+                <a href="#" class="sidebar-menu-dropdown">
+                    <i class='bx bx-carousel'></i>
+                    <span>Slider Cảm nhận</span>
+                    <div class="dropdown-icon"></div>
                 </a>
+                <ul class="sidebar-menu sidebar-menu-dropdown-content">
+                    <li>
+                        <a href="./listreview.php">
+                            Danh sách Slider
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./addreview.php">
+                            Thêm Slider
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="sidebar-submenu">
+                <a href="#" class="sidebar-menu-dropdown">
+                    <i class='bx bx-carousel'></i>
+                    <span>Slider Team</span>
+                    <div class="dropdown-icon"></div>
+                </a>
+                <ul class="sidebar-menu sidebar-menu-dropdown-content">
+                    <li>
+                        <a href="./listslider.php">
+                            Danh sách Slider
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./addslider.php">
+                            Thêm Slider
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li>
-                <a href="#">
+                <a href="./listcontact.php">
                     <i class='bx bx-chat'></i>
-                    <span>chat</span>
+                    <span>liên hệ</span>
                 </a>
             </li>
             <li>
+                <a href="./listregister.php">
+                    <i class='bx bx-data'></i>
+                    <span>Danh sách người đăng ký</span>
+                </a>
+            </li>
+            <!--    <li>
                 <a href="#">
                     <i class='bx bx-calendar'></i>
                     <span>calendar</span>

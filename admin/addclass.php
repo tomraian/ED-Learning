@@ -23,21 +23,24 @@
         <div class="row">
             <div class="col-12">
                 <!-- ORDERS TABLE -->
-                <div class="box">
-                    <form action="addclass.php" method="POST" class="box-body" enctype="multipart/form-data">
-                        <?php 
-                            if(isset($insert_class))
-                            {
-                                echo $insert_class;
-                            }
-                        ?>
+                <?php 
+                        if(isset($insert_class))
+                        {
+                            echo $insert_class;
+                        }
+                    ?>
+                <form action="addclass.php" method="POST" class="box-body" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" value="<?php echo $token; ?>">
+
+                    <div class="box">
                         <div class="form-group">
                             <label for="">Tên lớp học</label>
                             <input type="text" name="className" placeholder="Nhập tên khóa học">
                         </div>
                         <div class="form-group">
                             <label for="">Giới thiệu lớp học</label>
-                            <input type="text" name="classDesc" placeholder="Nhập thông tin giới thiệu lớp học">
+                            <textarea name="classDesc" id="" cols="30" rows="10" spellcheck="false"
+                                placeholder="Nhập thông tin giới thiệu lớp học"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="">-----Chọn khóa học-----</label>
@@ -63,12 +66,39 @@
                             <input type="date" name="classTime" id="">
                         </div>
                         <div class="form-group">
+                            <label for="">Nhập số buổi học</label>
+                            <input type="number" name="classLesson" id="">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Nhập thời gian học</label>
+                            <input type="text" name="classLearnTime" id=""
+                                placeholder="Nhập thứ trong tuần và thời gian học">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Nhập địa điểm học</label>
+                            <input type="text" name=" classAddress" id="" placeholder="Quận 1, TP Hồ Chí Minh">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Giá tiền</label>
+                            <input type="number" min="0" name="classPrice" placeholder="Nhập giá tiền cho lớp học">
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="form-group">
                             <label for="">Tên giáo viên</label>
                             <input type="text" name="classTeacher" placeholder="Nhập tên giáo viên giảng dạy">
                         </div>
                         <div class="form-group">
                             <label for="">Hình ảnh giáo viên</label>
                             <input type="file" name="classTeacherAvatar" accept=".jpg, .jpeg, .png .gif">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Mô tả ngắn về giáo viên</label>
+                            <input type="text" name="classTeacherDesc">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Giới thiệu về giáo viên</label>
+                            <textarea name="classTeacherIntro" id="" cols="30" rows="10"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="">Tên giáo viên hỗ trợ </label>
@@ -79,22 +109,23 @@
                             <input type="file" name="classMentorAvatar" accept=".jpg, .jpeg, .png .gif">
                         </div>
                         <div class="form-group">
-                            <label for="">Giá tiền</label>
-                            <input type="number" min="0" name="classPrice" placeholder="Nhập giá tiền cho lớp học">
+                            <label for="">Mô tả ngắn về giáo viên hỗ trợ</label>
+                            <input type="text" name="classMentorDesc">
                         </div>
-                        <!-- <div class="form-group">
-                            <label for="">Hình ảnh khóa học</label>
-                            <input type="file" name="image">
-                        </div> -->
+                        <div class="form-group">
+                            <label for="">Giới thiệu về giáo viên hỗ trợ</label>
+                            <textarea name="classMentorIntro" id="" cols="30" rows="10"></textarea>
+                        </div>
                         <div class="form-group">
                             <input type="submit" name="add" value="Thêm">
                         </div>
-                    </form>
-                </div>
-                <!-- END ORDERS TABLE -->
+                    </div>
+                </form>
             </div>
+            <!-- END ORDERS TABLE -->
         </div>
     </div>
+</div>
 </div>
 
 <?php 

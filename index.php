@@ -1,8 +1,9 @@
 <?php
     // header 
+    $title = 'Trang chủ';
     include './inc/header.php';
 ?>
-
+</header>
 <!-- end header  -->
 <main id="home-page">
     <!-- start banner section -->
@@ -18,7 +19,7 @@
             <p>
                 Giảm giá 5% khi học theo nhóm!
             </p>
-            <a href="" class="">
+            <a href="courses.php" class="">
                 Khóa học
             </a>
         </div>
@@ -38,7 +39,7 @@
                 </p>
             </div>
             <div class="course">
-                <h2 class="main-title">Khóa học</h2>
+                <h2 class="main-title">Lớp học</h2>
                 <div class="course-list">
                     <?php 
                         $getclass = $class->show_class_desc();
@@ -47,7 +48,7 @@
                             {
                     ?>
                     <div class="course-item">
-                        <a href="">
+                        <a href="class-details.php?classId=<?php echo $result['classId'] ?>">
                             <?php 
                                 if($result['classStatus'] == 0 )
                                 {
@@ -140,112 +141,56 @@
                 <div class="text-box">
                     <h2 class="main-title white">
                         Cảm Nhận Về CFD
+
                     </h2>
                 </div>
                 <div class="testimonial">
                     <div class="testimonial-item">
                         <div class="text">
-                            <div class="content ct-1 active">
+                            <?php 
+                            $reviewContent = $review->slider_showContent();
+                            ?>
+                            <?php
+                            if($review) {
+                                $i = 0;
+                                while($resultContent = $reviewContent->fetch_assoc())
+                                {
+                                $i++;
+                            ?>
+                            <div class="content ct-<?php echo $i ?>
+                             <?php if($i == 1)
+                             {
+                                 echo 'active';
+                             } ?>">
                                 <div class="info">
                                     <h4 class="name">
-                                        Nguyễn Văn Tuấn
+                                        <?php echo $resultContent['testimonial_sliderName'] ?>
                                     </h4>
-                                    <p class="class">Học viên CFD2</p>
+                                    <p class="class"><?php echo $resultContent['testimonial_sliderPosition'] ?></p>
                                 </div>
                                 <div class="desc">
                                     <p>
-                                        Mình đã từng tự học nhưng bị mất phương hướng trầm trọng, sau khóa học
-                                        mình đã tự code được 2 dự án riêng, 4 mentor dạy và hỗ trợ học viên rất
-                                        có tâm, chuyện livestream giải đáp thắc mắc cho học viên tới khuya là
-                                        thường xuyên. Sau khóa học mình học được cách tạo giao diện sao cho đẹp
-                                        tinh tế, thân thiện với người dùng.
+                                        <?php echo $resultContent['testimonial_sliderDesc']?>
                                     </p>
                                 </div>
-                                <div class="bottom">
-                                    <a href="">
-                                        <img src="img/facebook.svg" alt="" class="svg">
-                                    </a>
-                                    <span>
-                                        20/09/2020
-                                    </span>
-                                </div>
                             </div>
-                            <div class="content ct-2">
-                                <div class="info">
-                                    <h4 class="name">
-                                        Nguyễn Văn Tuấn
-                                    </h4>
-                                    <p class="class">Học viên CFD2</p>
-                                </div>
-                                <div class="desc">
-                                    <p>
-                                        Mình đã từng tự học nhưng bị mất phương hướng trầm trọng, sau khóa học
-                                        mình đã tự code được 2 dự án riêng, 4 mentor dạy và hỗ trợ học viên rất
-                                    </p>
-                                </div>
-                                <div class="bottom">
-                                    <a href="">
-                                        <img src="img/facebook.svg" alt="" class="svg">
-                                    </a>
-                                    <span>
-                                        20/09/2020
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="content ct-3">
-                                <div class="info">
-                                    <h4 class="name">
-                                        Nguyễn Văn Tài
-                                    </h4>
-                                    <p class="class">Học viên CFD2</p>
-                                </div>
-                                <div class="desc">
-                                    <p>
-                                        Mình đã từng tự học nhưng bị mất phương hướng trầm trọng, sau khóa học
-                                        mình đã tự code được 2 dự án riêng, 4 mentor dạy và hỗ trợ học viên rất
-                                        có tâm, chuyện livestream giải đáp thắc mắc cho học viên tới khuya là
-                                        thường xuyên. Sau khóa học mình học được cách tạo giao diện sao cho đẹp
-                                        tinh tế, thân thiện với người dùng.
-                                    </p>
-                                </div>
-                                <div class="bottom">
-                                    <a href="">
-                                        <img src="img/facebook.svg" alt="" class="svg">
-                                    </a>
-                                    <span>
-                                        20/09/2020
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="content ct-4">
-                                <div class="info">
-                                    <h4 class="name">
-                                        Ngô Thanh Long
-                                    </h4>
-                                    <p class="class">Học viên CFD2</p>
-                                </div>
-                                <div class="desc">
-                                    <p>
-                                        Khoá học bổ ích, dễ hiểu, đặc biệt là rất thực chiến. Các mentor hài
-                                        hước, nhiều kinh nghiệm. Nói chung là ai không học thì uổng lắm
-                                        =))))))))))
-                                    </p>
-                                </div>
-                                <div class="bottom">
-                                    <a href="">
-                                        <img src="img/facebook.svg" alt="" class="svg">
-                                    </a>
-                                    <span>
-                                        20/09/2020
-                                    </span>
-                                </div>
-                            </div>
+                            <?php 
+                                }
+                            }
+                            ?>
                         </div>
                         <div class="images">
-                            <img src="img/van-tuan-cfd.jpg" alt="">
-                            <img src="img/tuan-cfd.jpg" alt="">
-                            <img src="img/thanh-trung-cfd.jpg" alt="">
-                            <img src="img/long-cfd.jpg" alt="">
+                            <?php 
+                            $Image = $review->slider_showImage();
+                            if($Image) {
+                                while($result_Slider = $Image->fetch_assoc())
+                                {
+                            ?>
+                            <img src="uploads/<?php echo $result_Slider['testimonial_sliderImage'] ?>" alt="">
+                            <?php 
+                                }
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -259,6 +204,7 @@
             <div class="text-box">
                 <h2 class="main-title">
                     Câu Hỏi Thường Gặp
+                    <br>
                 </h2>
             </div>
             <div class="row accordion">
@@ -382,14 +328,17 @@
         </div>
         <div class="gallery-carousel">
             <div class="list">
-                <img src="img/cfd1-team.jpg" alt="">
-                <img src="img/cfd5-team03.jpg" alt="">
-                <img src="img/cfd-party.jpg" alt="">
-                <img src="img/cfd-team1.jpg" alt="">
-                <img src="img/cfd-team-3.jpg" alt="">
-                <img src="img/cfd-team-87.jpg" alt="">
-                <img src="img/cfd-team-cfd5.jpg" alt="">
-                <img src="img/cfd-team1.jpg" alt="">
+                <?php 
+                    $show_slider = $slider->get_slider();
+                    if(isset($show_slider))
+                    {
+                        while($result = $show_slider->fetch_assoc()){
+                ?>
+                <img src="uploads/<?php echo $result['sliderImage'] ?>" alt="">
+                <?php 
+                
+                        }
+                        }?>
             </div>
             <div class="controls">
                 <span>Trượt qua</span>
@@ -406,7 +355,7 @@
             <h3>
                 Bạn đã sẵn sàng trở thành chiến binh tiếp theo của Team CFD chưa?
             </h3>
-            <a href="" class="btn btn-white primary-text">
+            <a href="contact.php" class="btn btn-white primary-text">
                 Đăng ký nhận tin
             </a>
         </div>

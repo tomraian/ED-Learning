@@ -88,12 +88,19 @@
         $courseName = $this->fm->validation($courseName);
         $courseDesc = $this->fm->validation($courseDesc);
         $Id = $this->fm->validation($Id);
-       //  $courseImage = $this->fm->validation($courseImage);
 
         $courseName = mysqli_real_escape_string($this->db->link, $courseName);
         $courseDesc = mysqli_real_escape_string($this->db->link, $courseDesc);
         $Id = mysqli_real_escape_string($this->db->link, $Id);
-       //  $courseImage = mysqli_real_escape_string($this->db->link, $courseImage);
+      
+         $permitted = array('jpg', 'jpeg', 'png' , 'gif');
+         $file_name = $_FILES['courseImage'] ['name'];
+         $file_size = $_FILES['courseImage'] ['size'];
+         $file_temp = $_FILES['courseImage'] ['tmp_name'];
+         $div = explode('.', $file_name);
+         $file_ext = strtolower(end($div));
+         $unique_image = substr(md5(time()), 0 , 10).$this->fm->generateRandomString(10).'.'.$file_ext;
+         $uploaded_image = "../uploads/".$unique_image;
        //  kiểm tra lỗi 
         if(empty($courseName)) {
             $alert = '<span class="warning-message">Tên khóa học không được để trống</span>';
@@ -111,13 +118,23 @@
            $alert = '<span class="warning-message">Thông tin giới thiệu phải lớn hơn 10 ký tự</span>';
            return $alert;
         }
-       //  else if(empty($courseImage)){
-       //     $alert = "Thông tin giới thiệu khóa học không được để trống";
-       //     return $alert;
-       //  }
         else{
-            $query = "UPDATE tbl_courses SET coursesName = '$courseName', coursesDesc = '$courseDesc' WHERE coursesId = '$Id'";
-            $result  = $this->db->insert($query);
+         //   nếu có upload ảnh 
+            if (!empty($file_name)){
+               if(in_array($file_ext, $permitted) === false)
+               {
+                  $alert = '<span class="warning-message">Ảnh chỉ được có định dạng file là '.implode(',',$permitted)."</span>";
+                  return $alert;
+               }
+               else{
+                  move_uploaded_file($file_temp,$uploaded_image);
+                  $query = "UPDATE tbl_courses SET coursesName = '$courseName', coursesDesc = '$courseDesc', coursesImage = '$unique_image' WHERE coursesId = '$Id'";
+               }
+            }   
+            else{
+               $query = "UPDATE tbl_courses SET coursesName = '$courseName', coursesDesc = '$courseDesc' WHERE coursesId = '$Id'";
+            }
+            $result  = $this->db->update($query);
             if($result){
                 $alert = '<span class="success-message">Cập nhật khóa học thành công</span>';
                 return $alert;
@@ -142,6 +159,12 @@
          $alert = '<span class="warning-message">Xóa khóa học thất bại</span>';
          return $alert;
       }
+     }
+     public function check_course(){
+        $query = "SELECT DISTINCT tbl_courses.*,tbl_class.coursesId
+        FROM tbl_class INNER JOIN tbl_courses ON tbl_class.coursesId = tbl_courses.coursesId WHERE tbl_class.coursesId = tbl_courses.coursesId";
+        $result = $this->db->select($query);
+        return $result; 
      }
  }
 ?>

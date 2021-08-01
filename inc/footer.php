@@ -34,10 +34,10 @@
                 <div class="col-lg-6">
                     <div class="footer__right">
                         <ul class="footer__right-list">
-                            <li class="footer__list-items"><a href="">Trang chủ</a></li>
-                            <li class="footer__list-items"><a href="">Khóa học</a></li>
-                            <li class="footer__list-items"><a href="">Thanh toán </a></li>
-                            <li class="footer__list-items"><a href="">Điều khoản</a></li>
+                            <li class="footer__list-items"><a href="index.php">Trang chủ</a></li>
+                            <li class="footer__list-items"><a href="course.php">Khóa học</a></li>
+                            <li class="footer__list-items"><a href="team.php">ED Team </a></li>
+                            <li class="footer__list-items"><a href="policy.php">Điều khoản</a></li>
                         </ul>
                     </div>
                 </div>

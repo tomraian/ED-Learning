@@ -13,6 +13,21 @@
         $insert_courses = $courses->insert_course($courseName,$courseDesc);
    }
 ?>
+<?php
+$valid = false;
+if(isset($_SESSION['security_token'])&& isset($_POST['token']))
+{
+    if($_SESSION['security_token'] == $_POST['token']);
+}
+{
+    $valid = true;
+}
+if($valid === false){
+    echo 'aaa';
+}
+// $token = md5(uniqid(microtime(), true));
+// $_SESSION['security_token'] = $token;
+?>
 <div class="main">
     <div class="main-header">
         <div class="mobile-toggle" id="mobile-toggle">
@@ -28,7 +43,7 @@
                 <!-- ORDERS TABLE -->
                 <div class="box">
                     <form action="addcourse.php" method="POST" class="box-body" enctype="multipart/form-data">
-                        <input type="hidden" name="token" value="<?php echo $token; ?>" />
+                        <input type="hidden" name="token" value=" <?php echo $token; ?>" />
                         <?php 
                             if(isset($insert_courses))
                             {
@@ -48,13 +63,6 @@
                             <input type="file" name="courseImage">
                         </div>
                         <div class="form-group">
-                            <label for="check">
-                                <span>Duyệt</span>
-                                <input type="checkbox" name="check" id="check" value="1">
-                            </label>
-
-                        </div>
-                        <div class="form-group">
                             <input type="submit" name="add" value="Thêm">
                         </div>
                     </form>
@@ -68,3 +76,8 @@
 <?php 
     include './inc/footer.php';
 ?>
+<script>
+if (window.history.replaceState) {
+    window.history.replaceState(null, null, window.location.href);
+}
+</script>

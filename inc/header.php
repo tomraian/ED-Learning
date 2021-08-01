@@ -6,13 +6,21 @@
     include 'lib/database.php';
     include 'helpers/format.php';
     include './classes/class.php';
-    include './classes/user.php';
+    include './classes/admin.php';
     include './classes/courses.php';
+    include './classes/contact.php';
+    include './classes/review.php';
+    include './classes/slider.php';
+    include './classes/register.php';
     $db = new Database();
     $fm = new Format();
-    $user = new user();
+    $admin = new admin();
     $class = new classOfCourse();
     $courses = new courses();
+    $contact = new contact();
+    $review = new review();
+    $slider = new slider();
+    $register = new register();
 ?>
 <?php 
 header("Cache-Control: no-cache, must-revalidate");
@@ -27,8 +35,8 @@ header("Cache-Control: max-age=2592000");
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Trang chủ - Website trung tâm dạy lập trình </title>
-    <link rel="icon" href="img/favicon.ico">
+    <title><?php echo $title ?></title>
+    <link rel="shortcut icon" href="./img/logo-mb.png" type="image/png">
     <meta name="title" content="" />
     <meta name="description" content="" />
     <meta property="og:locale" content="vi" />
@@ -94,4 +102,3 @@ header("Cache-Control: max-age=2592000");
                 </ul>
             </nav>
             <div class="overlay"></div>
-        </header>
