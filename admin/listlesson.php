@@ -1,5 +1,5 @@
 <?php 
-    $title = "Danh sách lớp học";
+    $title = "Danh sách nội dung lớp học";
     include './inc/sidebar.php';
     include '../classes/courses.php';
     include '../classes/class.php';
@@ -8,11 +8,11 @@
 <?php 
     $class = new classOfCourse();
     $fm = new Format();
-    if(isset($_GET['delid']))
-    {
-        $Id = $_GET['delid'];
-        $del_class = $class->del_class($Id);
-   }
+//     if(isset($_GET['delid']))
+//     {
+//         $Id = $_GET['delid'];
+//         $del_class = $class->del_class($Id);
+//    }
 ?>
 
 <div class="main">
@@ -45,11 +45,7 @@
                                     <th>STT</th>
                                     <th>Tên lớp học</th>
                                     <th>Tên khóa học</th>
-                                    <th>Giá tiền</th>
-                                    <th>Giáo viên</th>
-                                    <th>Giáo viên hỗ trợ</th>
                                     <th>Tình trạng</th>
-                                    <th>Thời gian</th>
                                     <th>Hành động</th>
                                 </tr>
                             </thead>
@@ -68,27 +64,12 @@
                                         <?php echo $i?>
                                     </td>
                                     <td>
-                                        <a href="editclass.php?classId=<?php echo $result['classId']?>">
+                                        <a href="lessondetails.php?classId=<?php echo $result['classId']?>">
                                             <?php echo $result['className']; ?>
                                         </a>
                                     </td>
                                     <td>
                                         <?php echo $result['coursesName']; ?>
-                                    </td>
-                                    <td>
-                                        <?php  echo $fm->formatMoney($result['classPrice']) ?>
-                                    </td>
-                                    <td>
-                                        <div class="teacher-box">
-                                            <img src="../uploads/<?php echo $result['classTeacherAvatar']?>" alt="">
-                                            <span><?php echo $result['classTeacher']?></span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="teacher-box">
-                                            <img src="../uploads/<?php echo $result['classMentorAvatar']?>" alt="">
-                                            <span><?php echo $result['classMentor']?></span>
-                                        </div>
                                     </td>
                                     <td>
                                         <?php 
@@ -112,14 +93,9 @@
 
                                     </td>
                                     <td>
-                                        <?php  echo $fm->formatDate($result['classTime'])?>
-                                    </td>
-                                    <td>
                                         <div class="action-box">
-                                            <a href="editclass.php?classId=<?php echo $result['classId']?>"
+                                            <a href="lessondetails.php?classId=<?php echo $result['classId']?>"
                                                 class="action-box__edit">Sửa</a>
-                                            <a href="listclass.php?delid=<?php echo $result['classId']?>"
-                                                class="action-box__remove">Xóa</a>
                                         </div>
                                     </td>
                                 </tr>

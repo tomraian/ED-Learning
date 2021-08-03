@@ -335,6 +335,14 @@ a {
 .box-item-header {
   border-bottom: 1px solid rgba(51, 51, 51, 0.295);
 }
+.box-item p,
+.box-item a {
+  padding: 20px;
+  word-break: break-all;
+}
+.box-item P:first-child {
+  font-size: 20px;
+}
 .box-item:hover {
   background-color: rgba(122, 122, 122, 0.082);
 }
@@ -587,7 +595,12 @@ table td {
   border-radius: 5px;
   outline: none;
   border: 1px solid #000;
+}
+textarea {
   resize: none;
+}
+.box-item textarea {
+  padding: 5px;
 }
 .form-group input:focus,
 .form-group textarea:focus {

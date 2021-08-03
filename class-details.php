@@ -133,73 +133,30 @@
              <div class="accordion">
                  <div class="accordion-wrap" id="acc-details">
                      <h2 class="accordion-main">NỘI DUNG KHÓA HỌC</h2>
+                     <?php 
+                        $show_lesson = $lesson->show_lesson($Id);
+                        if($show_lesson)
+                        {
+                            $i = 0;
+                            while($result = $show_lesson->fetch_assoc())
+                            {
+                            $i++;
+                    ?>
                      <div class="accordion-item">
                          <div class="accordion-title">
-                             <h2>Kiến thức HTML toàn diện, Photoshop căn bản</h2>
-                             <span>Ngày 1</span>
+                             <h2><?php echo $result['lessonName'] ?></h2>
+                             <span>Ngày <?php echo $i; ?></span>
                          </div>
                          <div class="accordion-content">
                              <p>
-                                 Hướng dẫn các thẻ HTML, thao tác với bản thiết kế với Photoshop. Thực hành phân
-                                 tích và chia layout website với HTML. Thực hành
+                                 <?php echo $result['lessonDesc'] ?>
                              </p>
                          </div>
                      </div>
-                     <div class="accordion-item">
-                         <div class="accordion-title">
-                             <h2>CSS phần 1</h2>
-                             <span>Ngày 2</span>
-                         </div>
-                         <div class="accordion-content">
-                             <p>
-                                 Hướng dẫn các thuộc tính CSS. Thực hành
-                             </p>
-                         </div>
-                     </div>
-                     <div class="accordion-item">
-                         <div class="accordion-title">
-                             <h2>CSS phần 1</h2>
-                             <span>Ngày 2</span>
-                         </div>
-                         <div class="accordion-content">
-                             <p>
-                                 Hướng dẫn các thuộc tính CSS. Thực hành
-                             </p>
-                         </div>
-                     </div>
-                     <div class="accordion-item">
-                         <div class="accordion-title">
-                             <h2>CSS phần 1</h2>
-                             <span>Ngày 2</span>
-                         </div>
-                         <div class="accordion-content">
-                             <p>
-                                 Hướng dẫn các thuộc tính CSS. Thực hành
-                             </p>
-                         </div>
-                     </div>
-                     <div class="accordion-item">
-                         <div class="accordion-title">
-                             <h2>CSS phần 1</h2>
-                             <span>Ngày 2</span>
-                         </div>
-                         <div class="accordion-content">
-                             <p>
-                                 Hướng dẫn các thuộc tính CSS. Thực hành
-                             </p>
-                         </div>
-                     </div>
-                     <div class="accordion-item">
-                         <div class="accordion-title">
-                             <h2>CSS phần 1</h2>
-                             <span>Ngày 2</span>
-                         </div>
-                         <div class="accordion-content">
-                             <p>
-                                 Hướng dẫn các thuộc tính CSS. Thực hành
-                             </p>
-                         </div>
-                     </div>
+                     <?php 
+                            }
+                        }
+                        ?>
                  </div>
              </div>
              <h2 class="title">HÌNH THỨC HỌC</h2>
@@ -267,7 +224,7 @@
                      <img src="img/user-group-icon.png" alt="">
                      14 bạn đã đăng ký
                  </div>
-                 <a href="register.php" class="btn register">Đăng ký</a>
+                 <a href="register.php?classId=<?php echo $result_details['classId']?>" class="btn register">Đăng ký</a>
              </div>
          </div>
      </section>

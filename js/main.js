@@ -60,6 +60,7 @@ const toggleMenu = () => {
   });
 };
 toggleMenu();
+
 function switchPages() {
   let currenLocation = location.href;
   let menuItems = document.querySelectorAll(

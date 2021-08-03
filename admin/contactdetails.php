@@ -44,23 +44,24 @@
                                 while($result = $show_details->fetch_assoc()){
                                 ?>
                         <div class="box-item">
-                            <p>Tên liên hệ</p>
+                            <p>Tên liên hệ:</p>
                             <p><?php echo $result['contactName']?></p>
                         </div>
                         <div class="box-item">
-                            <p>Số điện thoại liên hệ</p>
+                            <p>Số điện thoại liên hệ:</p>
                             <p><?php echo $result['contactPhone']?></p>
                         </div>
                         <div class="box-item">
-                            <p>Email liên hệ</p>
-                            <p><?php echo $result['contactEmail']?></p>
+                            <p>Email liên hệ:</p>
+                            <a
+                                href="mailto:<?php echo $result['contactEmail']?>"><?php echo $result['contactEmail']?></a>
                         </div>
                         <div class="box-item">
-                            <p>Tiêu đề liên hệ</p>
+                            <p>Tiêu đề liên hệ:</p>
                             <p><?php echo $result['contactTitle']?></p>
                         </div>
                         <div class="box-item">
-                            <p>Nội dung liên hệ</p>
+                            <p>Nội dung liên hệ:</p>
                             <p><?php echo $result['contactContent']?></p>
                         </div>
                         <?php

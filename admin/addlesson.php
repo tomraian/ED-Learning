@@ -1,5 +1,5 @@
 <?php 
-    $title = "Thêm nội dung lớp học";
+    $title = "Thêm nội dung buổi học";
     include './inc/sidebar.php';
     include '../classes/lesson.php';
 ?>
@@ -10,24 +10,8 @@
         $lessonDesc = $_POST['lessonDesc'];
         $classId = $_POST['classId'];
         $insert_lesson = $lesson->insert_lesson($lessonName,$lessonDesc,$classId);
-        // for($i = 0; $i< 10 ; $i++){
-        // $lessonName.$i = $_POST['lessonName'].$i;
-        // $lessonDesc.$i = $_POST['lessonDesc'].$i;
-        // }
-        // $classId = $_POST['classId'];
-        // $insert_lesson = $lesson->insert_lesson($lessonName.$i,$lessonDesc.$i,$classId);
    }
-//    foreach($lessonName  as $key => $value){
-//           $query = "SELECT lessonId FROM tbl_lesson WHERE lessonDesc = '" . $mysqli->real_escape_string($lessonDesc[$key]) . "' LIMIT 1"; 
-//           $result = $mysqli->query($query);
-//           if($result->num_rows == 0){
-//               $query = "INSERT INTO tbl_lesson(lessonName,lessonDesc) VALUES ('"
-//               . $mysqli->real_escape_string($value) . 
-//               "','"
-//               . $mysqli->real_escape_string($lessonDesc[$key])."')";
-//               $insert = $mysqli->query($query);
-//           } 
-//     }
+
 ?>
 <div class="main">
     <div class="main-header">
@@ -49,7 +33,9 @@
                         }
                     ?>
                 <form action="" method="POST" class="box-body" enctype="multipart/form-data">
-                    <div class="form-group">
+                
+                        <div class="box">
+                        <div class="form-group">
                         <p style="text-align: center;"><label for="">----------Chọn lớp học----------</label></p>
                         <select name="classId" id="" class="class-select">
                             <?php 
@@ -63,20 +49,12 @@
                                 }
                         ?>
                         </select>
-                    </div>
-                    <a href="#" class="add_field">
-                        <i class='bx bx-plus'></i>
-                        <span>Thêm nội dung lớp học</span>
-                        <i class='bx bx-plus'></i>
-                    </a>
-                    <div class="box-wrap">
-                        <div class="box">
                             <div class="form-group">
-                                <label for="">Tiêu đề buổi học</label>
+                                <label for="">Tiêu đề nội dung buổi học</label>
                                 <input type="text" name="lessonName" placeholder="Nhập tên khóa học">
                             </div>
                             <div class="form-group">
-                                <label for="">Chi tiết buổi học</label>
+                                <label for="">Chi tiết nội dung buổi học</label>
                                 <input type="text" name="lessonDesc" placeholder="Nhập thông tin giới thiệu khóa học">
                             </div>
                         </div>

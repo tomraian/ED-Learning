@@ -12,6 +12,8 @@
     include './classes/review.php';
     include './classes/slider.php';
     include './classes/register.php';
+    include './classes/lesson.php';
+    include './classes/team.php';
     $db = new Database();
     $fm = new Format();
     $admin = new admin();
@@ -21,6 +23,8 @@
     $review = new review();
     $slider = new slider();
     $register = new register();
+    $lesson = new lesson();
+    $team = new team();
 ?>
 <?php 
 header("Cache-Control: no-cache, must-revalidate");
@@ -66,28 +70,12 @@ header("Cache-Control: max-age=2592000");
                     <p>menu</p>
                 </div>
                 <a href="index.php" class="logo">
-                    <img src="img/logo.svg" alt="" class="svg">
+                    <img src="img/logo-lg.png " alt="" class=" svg">
                 </a>
-                <div class="right">
-                    <a href="" class="sign-in btn-modal" data-toggle="modal-login">
-                        đăng nhập
-                    </a>
-                    <a href="" class="register btn-modal" data-toggle="modal-register">
-                        Đăng ký
-                    </a>
-                </div>
             </nav>
             <nav class="nav">
                 <ul class="menu-list">
-                    <li class="log-in">
-                        <a href="" class="sign-in btn-modal" data-toggle="modal-login">
-                            đăng nhập
-                        </a>
-                        <a href="" class="register btn-modal" data-toggle="modal-register">
-                            Đăng ký
-                        </a>
-                    </li>
-                    <li class="active">
+                    <li>
                         <a href="index.php">Trang chủ</a>
                     </li>
                     <li>

@@ -30,8 +30,6 @@
                         }
                     ?>
                 <form action="addclass.php" method="POST" class="box-body" enctype="multipart/form-data">
-                    <input type="hidden" name="csrf_token" value="<?php echo $token; ?>">
-
                     <div class="box">
                         <div class="form-group">
                             <label for="">Tên lớp học</label>

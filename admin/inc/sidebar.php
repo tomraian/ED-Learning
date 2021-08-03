@@ -34,6 +34,7 @@ header("Cache-Control: max-age=2592000")
         rel="stylesheet">
     <!-- BOXICONS -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
     <!-- APP CSS -->
     <link rel="stylesheet" href="./css/grid.css">
     <link rel="stylesheet" href="./css/app.css">
@@ -53,7 +54,6 @@ header("Cache-Control: max-age=2592000")
         </div>
         <div class="sidebar-user">
             <div class="sidebar-user-info">
-                <img src="./images/user-image.jpg" alt="User picture" class="profile-image">
                 <div class="sidebar-user-name">
                     <?php 
                     echo Session::get('adminName');
@@ -153,6 +153,11 @@ header("Cache-Control: max-age=2592000")
                             Thêm nội dung lớp học
                         </a>
                     </li>
+                    <li>
+                        <a href="./listlesson.php">
+                            danh sách nội dung lớp học
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="sidebar-submenu">
@@ -189,6 +194,25 @@ header("Cache-Control: max-age=2592000")
                     <li>
                         <a href="./addslider.php">
                             Thêm Slider
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="sidebar-submenu">
+                <a href="#" class="sidebar-menu-dropdown">
+                    <i class='bx bx-user'></i>
+                    <span>Thành viên ED</span>
+                    <div class="dropdown-icon"></div>
+                </a>
+                <ul class="sidebar-menu sidebar-menu-dropdown-content">
+                    <li>
+                        <a href="./listteam.php">
+                            Danh sách thành viên
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./addteam.php">
+                            Thêm thành viên
                         </a>
                     </li>
                 </ul>

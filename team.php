@@ -12,43 +12,25 @@
             <p class="intro">Chúng ta không phải một lớp học, những thành viên CFD là một TEAM, cùng học hỏi và
                 hỗ trợ lẫn nhau dưới sự hướng dẫn từ những người đồng sáng lập CFD.</p>
             <div class="row">
+                <?php 
+                    $show_team = $team->show_team();
+                    if($show_team){
+                        while($result = $show_team->fetch_assoc())
+                        {
+                ?>
                 <div class="item col-md-6 col-sm-6">
                     <div class="img">
-                        <img src="img/tran-nghia-cfd-thubnail-2-585x385.jpg" alt="">
+                        <img src="./uploads/<?php echo $result['teamImage'] ?>" alt="">
                     </div>
                     <div class="info">
-                        <h3 class="name">Trần Nghĩa</h3>
-                        <p class="title">Founder CFD & Creative Front-End Developer</p>
-                        <a href="http://nghiatran.info/" target="_blank" class="website">http://nghiatran.info/</a>
+                        <h3 class="name"><?php echo $result['teamName'] ?></h3>
+                        <p class="title"><?php echo $result['teamDesc'] ?></p>
                     </div>
                 </div>
-                <div class="item col-md-6 col-sm-6">
-                    <div class="img">
-                        <img src="img/quan-cfd-thubnail-2-585x385.jpg" alt="">
-                    </div>
-                    <div class="info">
-                        <h3 class="name">Đặng Quân</h3>
-                        <p class="title">Co-founder CFD & Fullstack Developer</p>
-                    </div>
-                </div>
-                <div class="item col-md-6 col-sm-6">
-                    <div class="img">
-                        <img src="img/vuong-cfd-thubnail-2-585x385.jpg" alt="">
-                    </div>
-                    <div class="info">
-                        <h3 class="name">Đặng Vương</h3>
-                        <p class="title">Co-Founder CFD & Fullstack Developer</p>
-                    </div>
-                </div>
-                <div class="item col-md-6 col-sm-6">
-                    <div class="img">
-                        <img src="img/huy-thubnail-2-585x385.jpg" alt="">
-                    </div>
-                    <div class="info">
-                        <h3 class="name">Nguyễn Huy</h3>
-                        <p class="title">Co-founder & Fullstack Developer</p>
-                    </div>
-                </div>
+                <?php 
+                    }
+                }
+                ?>
             </div>
         </div>
     </section>

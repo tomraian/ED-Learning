@@ -35,7 +35,7 @@
                     <div class="footer__right">
                         <ul class="footer__right-list">
                             <li class="footer__list-items"><a href="index.php">Trang chủ</a></li>
-                            <li class="footer__list-items"><a href="course.php">Khóa học</a></li>
+                            <li class="footer__list-items"><a href="courses.php">Khóa học</a></li>
                             <li class="footer__list-items"><a href="team.php">ED Team </a></li>
                             <li class="footer__list-items"><a href="policy.php">Điều khoản</a></li>
                         </ul>
@@ -52,60 +52,6 @@
         </div>
     </div>
 </footer>
-<div class="modal " id="modal-login">
-    <div class="wrap">
-        <form action="" class="form-login">
-            <h3>đăng nhập</h3>
-            <div class="form-group">
-                <input type="text" name="" placeholder="Email / Số điện thoại " id="">
-                <input type="password" name="" placeholder="Mật khẩu">
-            </div>
-            <div class="form-group form-check">
-                <div class="btn-remember">
-                    <input type="checkbox" for="" id="remember" name="remember">
-                    <label for="remember">
-                        Nhớ mật khẩu
-                    </label>
-                </div>
-                <div class="forgot-password">
-                    <a href="">Quên mật khẩu</a>
-                </div>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="đăng nhập" style="text-transform: uppercase;">
-            </div>
-        </form>
-        <div class="close" data-close="modal-login">
-            <img src="img/close-icon.png" alt="">
-        </div>
-    </div>
-</div>
-<div class="modal " id="modal-register">
-    <div class="wrap">
-        <h3>Đăng ký</h3>
-        <div class="btn btn-login">
-            <img src="img/google.svg" alt="" class="svg">
-        </div>
-        <div class="policy">
-            <p>Bằng việc đăng kí, bạn đã đồng ý <a href="">Điều khoản bảo mật</a> của CFD</p>
-        </div>
-        <div class="close" data-close="modal-register">
-            <img src="img/close-icon.png" alt="">
-        </div>
-    </div>
-</div>
-<div class="modal modal-difference" id="modal-difference">
-    <div class="container">
-        <div class="wrap">
-            <video autoplay loop controls>
-                <source src="img/CFD-video-intro.mp4" type="">
-            </video>
-            <div class="close" data-close="modal-difference">
-                <img src="img/close-icon.png" alt="">
-            </div>
-        </div>
-    </div>
-</div>
 </div>
 <script type="text/javascript" src="dest/jsmain.min.js"></script>
 <script type="text/javascript" src="js/main.js"></script>

@@ -148,3 +148,31 @@ $(document).ready(function () {
     x--;
   });
 });
+function submit() {
+  document.getElementById("form1").submit();
+}
+// let textarea = document.querySelectorAll(".textarea");
+// let unlock = document.getElementsByClassName("unlock");
+// for (let u = 0; u < unlock.length; u++) {
+//   unlock[u].addEventListener("click", function () {
+//     for (let i = 0; i < textarea.length; i++) {
+//       textarea[i].disabled = false;
+//     }
+//     //     unlock.innerHTML =
+//     //   '<a href="javascript:;" class="action-box__edit" name="update';
+//     // onclick = 'submit();">Sửa</a>';
+//   });
+// }
+// unlock.innerHTML =
+//   '<a href="javascript:;" class="action-box__edit" name="update';
+// onclick = 'submit();">Sửa</a>';
+// ===========CUT SPACE HTML NAME================
+let lessonName = document.querySelectorAll(".lessonName");
+for (let i = 0; i < lessonName.length; i++) {
+  lessonName[i].setAttribute("name", lessonName[i].getAttribute("name").trim());
+}
+// ===========CUT SPACE HTML NAME================
+let lessonDesc = document.querySelectorAll(".lessonDesc");
+for (let i = 0; i < lessonDesc.length; i++) {
+  lessonDesc[i].setAttribute("name", lessonDesc[i].getAttribute("name").trim());
+}
