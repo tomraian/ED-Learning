@@ -37,7 +37,7 @@
                              <p class="text">
                                  <?php echo $result['coursesDesc']?>
                              </p>
-                             <div class="course-img">
+                             <div class="course-image">
                                  <img src="./uploads/<?php echo $result['coursesImage']?>" alt="">
                              </div>
                          </a>

@@ -99,10 +99,10 @@
                                 <span>Đặc Biệt</span> Tại CFD
                             </h2>
                             <div class="video-difference btn-modal" data-toggle="modal-difference" data-video="">
-                                <img src="img/img-cfd-dac-biet.jpg" alt="">
-                                <div class="play-video">
+                                <img src="img/dac-biet.jpg" alt="">
+                                <!-- <div class="play-video">
                                     <img src="img/play-icon.svg" alt="" class="svg">
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

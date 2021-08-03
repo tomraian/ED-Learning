@@ -67,7 +67,7 @@ if(!isset($_GET['courseId']) || $_GET['courseId'] == NULL) {
                                 }
                                 else if($result['classStatus'] == 2)
                                 {
-                                    echo ' <span class="course-badge">Đã kết thúc</span>';
+                                    echo ' <span class="course-badge disable">Đã kết thúc</span>';
                                 }
                             ?>
                             <h3 class="course-title">
